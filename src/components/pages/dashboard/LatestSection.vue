@@ -6,10 +6,10 @@ import { Icon } from '@iconify/vue'
 
 <template>
     <section class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <h2 class="sr-only">Latest users</h2>
+        <h2 class="sr-only">Pagamentos recentes</h2>
 
         <!-- Latest users -->
-        <BaseCard title="Latest Users" :actions="[{ title: 'View', to: '#' }]">
+        <BaseCard title="Pagamentos Recentes" :actions="[{ title: 'Ver', to: '#' }]">
             <!-- Table -->
         </BaseCard>
 
@@ -17,8 +17,8 @@ import { Icon } from '@iconify/vue'
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1">
             <!-- Recent contacts -->
             <BaseCard
-                title="Recent Contacts"
-                :actions="[{ title: 'View', to: '#' }]"
+                title="Úsuários Recentes"
+                :actions="[{ title: 'Ver', to: '#' }]"
             >
                 <div
                     class="mt-4 flex items-center justify-between"
@@ -53,7 +53,7 @@ import { Icon } from '@iconify/vue'
 
             <!-- Recent transactions -->
             <BaseCard
-                title="Recent Transactions"
+                title="Transações Recentes"
                 :actions="[{ title: 'View', to: '#' }]"
             >
                 <div class="mt-4 flex items-center justify-between">

@@ -3,7 +3,7 @@ import PageWrapper from '@/components/PageWrapper.vue'
 </script>
 
 <template>
-    <PageWrapper title="Blank">
+    <PageWrapper title="Bandeiras">
         <!--  -->
     </PageWrapper>
 </template>

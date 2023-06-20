@@ -21,7 +21,7 @@ const login = () => {}
         <div class="grid gap-6">
             <!-- Email input -->
             <div class="space-y-2">
-                <Label for="email" value="Email" />
+                <Label for="email" value="E-mail" />
 
                 <InputIconWrapper icon="mdi:email-outline">
                     <Input
@@ -29,7 +29,7 @@ const login = () => {}
                         id="email"
                         type="email"
                         class="block w-full"
-                        placeholder="Email"
+                        placeholder="Seu E-mail"
                         v-model="loginForm.email"
                         required
                         autofocus
@@ -40,7 +40,7 @@ const login = () => {}
 
             <!-- Password input -->
             <div class="space-y-2">
-                <Label for="password" value="Password" />
+                <Label for="password" value="Senha" />
 
                 <InputIconWrapper icon="mdi:lock-outline">
                     <Input
@@ -48,7 +48,7 @@ const login = () => {}
                         id="password"
                         type="password"
                         class="block w-full"
-                        placeholder="Password"
+                        placeholder="Sua Senha"
                         v-model="loginForm.password"
                         required
                         autocomplete="current-password"
@@ -63,14 +63,14 @@ const login = () => {}
                         name="remember"
                         v-model:checked="loginForm.remember"
                     />
-                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                    <span class="ml-2 text-sm text-gray-600">Lembrar de mim</span>
                 </label>
 
                 <router-link
                     :to="{ name: 'ForgotPassword' }"
                     class="text-sm text-blue-500 hover:underline"
                 >
-                    Forgot your password?
+                    Esqueceu sua senha?
                 </router-link>
             </div>
 
@@ -82,18 +82,18 @@ const login = () => {}
                     :disabled="loginForm.processing"
                     left-icon="mdi:login"
                 >
-                    <span>Log in</span>
+                    <span>Entrar</span>
                 </Button>
             </div>
 
             <!-- Register link -->
             <p class="text-sm text-gray-600 dark:text-gray-400">
-                Don't have an account?
+                Não possui uma conta?
                 <router-link
                     :to="{ name: 'Register' }"
                     class="text-blue-500 hover:underline"
                 >
-                    Register
+                    Cadastra-se
                 </router-link>
             </p>
         </div>

@@ -23,14 +23,14 @@ const register = () => {}
         <div class="grid gap-6">
             <!-- Name input -->
             <div class="space-y-2">
-                <Label for="name" value="Name" />
+                <Label for="name" value="Nome" />
 
                 <InputIconWrapper icon="mdi:account-outline">
                     <Input
                         withIcon
                         id="name"
                         type="text"
-                        placeholder="Name"
+                        placeholder="Seu Nome"
                         class="block w-full"
                         v-model="registerForm.name"
                         required
@@ -42,7 +42,7 @@ const register = () => {}
 
             <!-- Email input -->
             <div class="space-y-2">
-                <Label for="email" value="Email" />
+                <Label for="email" value="E-mail" />
 
                 <InputIconWrapper icon="mdi:email-outline">
                     <Input
@@ -50,7 +50,7 @@ const register = () => {}
                         id="email"
                         type="email"
                         class="block w-full"
-                        placeholder="Email"
+                        placeholder="Seu E-mail"
                         v-model="registerForm.email"
                         required
                         autocomplete="username"
@@ -60,7 +60,7 @@ const register = () => {}
 
             <!-- Password input -->
             <div class="space-y-2">
-                <Label for="password" value="Password" />
+                <Label for="password" value="Senha" />
 
                 <InputIconWrapper icon="mdi:lock-outline">
                     <Input
@@ -68,7 +68,7 @@ const register = () => {}
                         id="password"
                         type="password"
                         class="block w-full"
-                        placeholder="Password"
+                        placeholder="Sua Senha"
                         v-model="registerForm.password"
                         required
                         autocomplete="new-password"
@@ -78,7 +78,7 @@ const register = () => {}
 
             <!-- Password confirmation input -->
             <div class="space-y-2">
-                <Label for="password_confirmation" value="Confirm Password" />
+                <Label for="password_confirmation" value="Confirme Sua Senha" />
 
                 <InputIconWrapper icon="mdi:lock-outline">
                     <Input
@@ -86,7 +86,7 @@ const register = () => {}
                         id="password_confirmation"
                         type="password"
                         class="block w-full"
-                        placeholder="Confirm Password"
+                        placeholder="Confirme Sua Senha"
                         v-model="registerForm.password_confirmation"
                         required
                         autocomplete="new-password"
@@ -105,21 +105,21 @@ const register = () => {}
                         />
 
                         <div class="ml-2">
-                            I agree to the
+                            Estou de acordo com
                             <a
                                 target="_blank"
                                 href="#"
                                 class="text-sm text-blue-600 underline hover:text-blue-900"
                             >
-                                Terms of Service
+                                Termos de Serviço
                             </a>
-                            and
+                            e
                             <a
                                 target="_blank"
                                 href="#"
                                 class="text-sm text-blue-600 underline hover:text-blue-900"
                             >
-                                Privacy Policy
+                                Política de Privacidade
                             </a>
                         </div>
                     </div>
@@ -134,18 +134,18 @@ const register = () => {}
                     :disabled="registerForm.processing"
                     left-icon="mdi:account-plus-outline"
                 >
-                    <span>Register</span>
+                    <span>Cadastrar-se</span>
                 </Button>
             </div>
 
             <!-- Login link -->
             <p class="text-sm text-gray-600 dark:text-gray-400">
-                Already have an account?
+                Já possui uma conta?
                 <router-link
                     :to="{ name: 'Login' }"
                     class="text-blue-500 hover:underline"
                 >
-                    Login
+                    Entre
                 </router-link>
             </p>
         </div>

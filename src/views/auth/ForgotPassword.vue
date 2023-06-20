@@ -17,16 +17,14 @@ const submit = () => {
 
 <template>
     <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        Forgot your password? No problem. Just let us know your email address
-        and we will email you a password reset link that will allow you to
-        choose a new one.
+        Esqueceu sua senha? Sem problemas. Basta nos informar seu endereço de e-mail e enviaremos um e-mail com um link de redefinição de senha que permitirá que você escolha uma nova.
     </div>
 
     <form @submit.prevent="submit">
         <div class="grid gap-6">
             <!-- Email input -->
             <div class="space-y-2">
-                <Label for="email" value="Email" />
+                <Label for="email" value="E-mail" />
 
                 <InputIconWrapper icon="mdi:email-outline">
                     <Input
@@ -34,7 +32,7 @@ const submit = () => {
                         id="email"
                         type="email"
                         class="block w-full"
-                        placeholder="Email"
+                        placeholder="E-mail"
                         v-model="forgotPasswordForm.email"
                         required
                         autofocus
@@ -51,7 +49,7 @@ const submit = () => {
                     :disabled="forgotPasswordForm.processing"
                     left-icon="mdi:send-outline"
                 >
-                    <span>Email Password Reset Link</span>
+                    <span>Enviar link de redefinição de senha</span>
                 </Button>
             </div>
         </div>

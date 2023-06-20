@@ -27,7 +27,42 @@ const isCurrentPath = (path) => {
             icon="mdi:view-dashboard"
         />
 
-        <SidebarCollapsible
+        <SidebarLink
+            title="Transações"
+            :to="{ name: 'Transactions' }"
+            :active="isCurrentRoute('Transactions')"
+            icon="mdi:swap-horizontal"
+        />
+
+        <SidebarLink
+            title="Pagamentos"
+            :to="{ name: 'Payments' }"
+            :active="isCurrentRoute('Payments')"
+            icon="mdi:swap-horizontal"
+        />
+
+        <SidebarLink
+            title="Cartões"
+            :to="{ name: 'Cards' }"
+            :active="isCurrentRoute('Cards')"
+            icon="mdi:swap-horizontal"
+        />
+
+        <SidebarLink
+            title="Bandeiras"
+            :to="{ name: 'Brands' }"
+            :active="isCurrentRoute('Brands')"
+            icon="mdi:swap-horizontal"
+        />
+
+        <SidebarLink
+            title="Categorias"
+            :to="{ name: 'Categories' }"
+            :active="isCurrentRoute('Categories')"
+            icon="mdi:swap-horizontal"
+        />
+
+        <!-- <SidebarCollapsible
             icon="mdi:note-outline"
             title="Pages"
             :active="isCurrentPath('/pages')"
@@ -37,29 +72,29 @@ const isCurrentPath = (path) => {
                 title="Blank"
                 :active="isCurrentRoute('Blank')"
             />
-        </SidebarCollapsible>
+        </SidebarCollapsible> -->
 
-        <SidebarCollapsible icon="mdi:shield-star-outline" title="Authentication">
+        <SidebarCollapsible icon="mdi:shield-star-outline" title="Autenticação">
             <SidebarCollapsibleItem :to="{ name: 'Login' }" title="Login" />
             <SidebarCollapsibleItem
                 :to="{ name: 'Register' }"
-                title="Register"
+                title="Cadastro"
             />
             <SidebarCollapsibleItem
                 :to="{ name: 'VerifyEmail' }"
-                title="Verify Email"
+                title="Verificar E-mail"
             />
             <SidebarCollapsibleItem
                 :to="{ name: 'ForgotPassword' }"
-                title="Forgot Password"
+                title="Esqueceu sua Senha"
             />
             <SidebarCollapsibleItem
                 :to="{ name: 'ResetPassword' }"
-                title="Reset Password"
+                title="Alterar Senha"
             />
             <SidebarCollapsibleItem
                 :to="{ name: 'ConfirmPassword' }"
-                title="Confirm Password"
+                title="Confirmar Senha"
             />
         </SidebarCollapsible>
     </PerfrectScrollbar>

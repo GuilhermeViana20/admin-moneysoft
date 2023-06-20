@@ -13,15 +13,15 @@ onMounted(() => {
         chart: {
             type: 'donut',
             toolbar: {
-                show: false,
+                show: true,
             },
         },
         dataLabels: {
             enabled: false,
         },
-        legend: { show: false },
+        legend: { show: true },
         comparedResult: [2, 8],
-        labels: ['Sales', ''],
+        labels: ['Despesas', ''],
         stroke: { width: 0 },
         colors: ['#a855f7', '#e2e8f0'],
         grid: {
@@ -47,7 +47,7 @@ onMounted(() => {
                         },
                         total: {
                             show: true,
-                            label: 'Sales',
+                            label: 'Despesas',
                             formatter() {
                                 return '30%'
                             },
@@ -62,11 +62,11 @@ onMounted(() => {
     let salesChart = new ApexCharts(salesChartEl.value, {
         series: [
             {
-                name: 'Sales',
+                name: 'Despesas',
                 data: [31, 40, 28, 51, 42, 109, 100],
             },
             {
-                name: 'Revenue',
+                name: 'Receitas',
                 data: [11, 32, 45, 32, 34, 52, 41],
             },
         ],
@@ -141,7 +141,7 @@ onMounted(() => {
                             </div>
 
                             <p class="text-sm font-medium text-white">
-                                Today's Users
+                                Transações de hoje
                             </p>
                         </div>
                     </BaseCard>
@@ -165,7 +165,7 @@ onMounted(() => {
                             </div>
 
                             <p class="text-sm font-medium text-white">
-                                Today's Sales
+                                Pagamentos de hoje
                             </p>
                         </div>
                     </BaseCard>
@@ -174,15 +174,15 @@ onMounted(() => {
                 <!-- Earning card -->
                 <BaseCard noHeader class="grid grid-cols-2">
                     <div class="grid grid-cols-1 gap-4">
-                        <h4 class="text-2xl font-medium">Earning</h4>
+                        <h4 class="text-2xl font-medium">Despesa do salário</h4>
                         <p class="text-lg font-medium text-gray-500">
-                            This Month
+                            Esse mês
                         </p>
                         <p class="text-base font-medium text-green-400">
                             +20.5%
                         </p>
                         <p class="text-2xl font-medium text-gray-600">
-                            $5070.80
+                            R$ 5.070,80
                         </p>
                     </div>
 
@@ -195,7 +195,7 @@ onMounted(() => {
 
             <!-- Bar chart -->
             <BaseCard
-                title="Salas Analytics"
+                title="Análise de pagamentos"
                 :actions="[{ title: 'View', to: '#' }]"
             >
                 <div ref="salesChartEl"></div>
