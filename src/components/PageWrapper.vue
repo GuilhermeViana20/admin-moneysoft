@@ -4,6 +4,8 @@ import Button from '@/components/Button.vue'
 defineProps({
     title: String,
     action: String,
+    url: String,
+    icon: String
 })
 </script>
 
@@ -16,10 +18,10 @@ defineProps({
             </slot>
 
             <slot name="action">
-                <template v-if="action">
-                    <router-link :to="action">
-                        <Button variant="black" class="justify-center max-w-sm gap-2" left-icon="mdi:plus">
-                            <span>Adicionar</span>
+                <template v-if="url">
+                    <router-link :to="url">
+                        <Button variant="black" class="justify-center max-w-sm gap-2" :left-icon="icon ?? 'mdi:plus'">
+                            <span>{{ action ? action : 'Adicionar' }}</span>
                         </Button>
                     </router-link>
                 </template>

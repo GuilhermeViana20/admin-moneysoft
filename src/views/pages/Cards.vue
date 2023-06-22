@@ -26,7 +26,7 @@ const items = ref([
 </script>
 
 <template>
-  <PageWrapper title="Cartões" action="/add/card">
+  <PageWrapper title="Cartões" url="/add/card">
     <div class="overflow-x-auto">
       <table class="min-w-full">
         <thead>

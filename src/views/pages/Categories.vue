@@ -26,7 +26,7 @@ const items = ref([
 </script>
 
 <template>
-	<PageWrapper title="Categorias" action="/add/category">
+	<PageWrapper title="Categorias" url="/add/category">
 		<div class="overflow-x-auto">
 			<table class="min-w-full">
 				<thead>

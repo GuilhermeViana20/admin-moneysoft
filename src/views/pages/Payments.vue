@@ -27,7 +27,7 @@ const items = ref([
 </script>
 
 <template>
-  <PageWrapper title="Pagamentos" action="/add/payment">
+  <PageWrapper title="Pagamentos" url="/add/payment">
     <div class="overflow-x-auto">
       <table class="min-w-full">
         <thead>
