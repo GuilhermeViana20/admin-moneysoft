@@ -24,6 +24,7 @@ const loginForm = reactive({
 
 const login = async () => {
     try {
+        loginForm.processing = true
         const response = await api.post('/login', {
             email: loginForm.email,
             password: loginForm.password
@@ -33,11 +34,13 @@ const login = async () => {
         localStorage.setItem('token', token);
 
         router.push('/');
+        loginForm.processing = false
     } catch (error) {
         if (error.response) {
             toast.error(error.response.data, { timeout: 3000 });
         }
 
+        loginForm.processing = false
         console.log(error)
     }
 };
