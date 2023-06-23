@@ -3,26 +3,23 @@ import { ref } from 'vue';
 import PageWrapper from '@/components/PageWrapper.vue';
 import Button from '@/components/Button.vue'
 import { Icon } from '@iconify/vue'
+import api from '@/api'
 
-const items = ref([
-  {
-    id: 1,
-    description: 'Transação 1',
-    value: 'R$ 100,00',
-    executed_at: '2 de março, 2023',
-    status: 'PAGO',
-    type: 'Pagamento',
-  },
-  {
-    id: 2,
-    description: 'Transação 2',
-    value: 'R$ 50,00',
-    executed_at: '2 de março, 2023',
-    status: 'NÃO PAGO',
-    type: 'Recebimento',
-  },
-  // Adicione mais objetos de transação conforme necessário
-]);
+const items = ref(null)
+const showTable = ref(false)
+
+const loadData = async () => {
+    try {
+        const response = await api.get('/payments');
+        items.value = response.data.payments;
+        showTable.value = true
+    } catch (error) {
+        console.error(error);
+        showTable.value = true
+    }
+}
+
+loadData();
 
 </script>
 
@@ -42,9 +39,9 @@ const items = ref([
         </thead>
         <tbody>
           <tr v-for="item in items" :key="item.id" class="border-b text-center">
-            <td class="py-2 px-4">{{ item.description }}</td>
-            <td class="py-2 px-4">{{ item.value }}</td>
-            <td class="py-2 px-4">{{ item.executed_at }}</td>
+            <td class="py-2 px-4">{{ item.name }}</td>
+            <td class="py-2 px-4">{{ item.amount }}</td>
+            <td class="py-2 px-4">{{ item.expiry_date }}</td>
             <td class="py-2 px-4">{{ item.status }}</td>
             <td class="py-2 px-4">{{ item.type }}</td>
             <td>

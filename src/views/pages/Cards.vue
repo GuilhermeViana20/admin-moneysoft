@@ -3,25 +3,23 @@ import { ref } from 'vue';
 import PageWrapper from '@/components/PageWrapper.vue';
 import Button from '@/components/Button.vue'
 import { Icon } from '@iconify/vue'
+import api from '@/api'
 
-const items = ref([
-  {
-    id: 1,
-    main: 1,
-    description: 'Inter',
-    brand: 'https://i.ibb.co/WPHGQRB/mastercard.png',
-    number: '2312 **** **** 2999',
-    expiry: '03/23',
-  },
-  {
-    id: 2,
-    main: 0,
-    description: 'Transação 2',
-    brand: 'https://i.ibb.co/WPHGQRB/mastercard.png',
-    number: '2312 **** **** 2999',
-    expiry: '03/23',
-  },
-]);
+const showTable = ref(false)
+const items = ref(null)
+
+const loadData = async () => {
+    try {
+        const response = await api.get('/cards');
+        items.value = response.data.cards;
+        showTable.value = true
+    } catch (error) {
+        console.error(error);
+        showTable.value = true
+    }
+}
+
+loadData();
 
 </script>
 
