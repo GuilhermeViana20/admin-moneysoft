@@ -60,7 +60,7 @@ loadData();
 				<tbody>
 					<tr v-for="item in items" :key="item.id" class="border-b text-center">
 						<td class="py-2 px-4">{{ item.description }}</td>
-						<td class="py-2 px-4">{{ item.value }}</td>
+						<td class="py-2 px-4">{{ item.amount }}</td>
 						<td class="py-2 px-4">{{ item.executed_at }}</td>
 						<td class="py-2 px-4">
 							<Icon v-if="item.type === 'revenue'" icon="mdi:chevron-double-up" v-show="!isDark" aria-hidden="true"
