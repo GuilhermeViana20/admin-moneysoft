@@ -1,10 +1,19 @@
 <script setup>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import InputIconWrapper from '@/components/InputIconWrapper.vue'
 import Label from '@/components/Label.vue'
 import Input from '@/components/Input.vue'
 import Checkbox from '@/components/Checkbox.vue'
 import Button from '@/components/Button.vue'
+import api from '@/api'
+import { useToast } from 'vue-toastification';
+import 'vue-toastification/dist/index.css';
+import { useRouter } from 'vue-router';
+
+const toast = useToast();
+const router = useRouter();
+
+const token = ref(null)
 
 const loginForm = reactive({
     email: '',
@@ -13,7 +22,26 @@ const loginForm = reactive({
     processing: false,
 })
 
-const login = () => {}
+const login = async () => {
+    try {
+        const response = await api.post('/login', {
+            email: loginForm.email,
+            password: loginForm.password
+        });
+
+        const token = response.data.access_token;
+        localStorage.setItem('token', token);
+
+        router.push('/');
+    } catch (error) {
+        if (error.response) {
+            toast.error(error.response.data, { timeout: 3000 });
+        }
+
+        console.log(error)
+    }
+};
+
 </script>
 
 <template>
