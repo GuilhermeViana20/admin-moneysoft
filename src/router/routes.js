@@ -34,6 +34,11 @@ export default [
         component: () => import('@/views/pages/Payments.vue'),
       },
       {
+        path: '/pages/add/payment',
+        name: 'AddPayment',
+        component: () => import('@/views/pages/AddPayment.vue'),
+      },
+      {
         path: '/pages/cards',
         name: 'Cards',
         component: () => import('@/views/pages/Cards.vue'),

@@ -24,7 +24,7 @@ loadData();
 </script>
 
 <template>
-  <PageWrapper title="Pagamentos" url="/add/payment">
+  <PageWrapper title="Pagamentos" url="/pages/add/payment">
     <div class="overflow-x-auto">
       <table class="min-w-full">
         <thead>
