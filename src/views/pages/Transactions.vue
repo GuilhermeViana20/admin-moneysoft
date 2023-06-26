@@ -63,9 +63,9 @@ loadData();
 						<td class="py-2 px-4">{{ item.amount }}</td>
 						<td class="py-2 px-4">{{ item.executed_at }}</td>
 						<td class="py-2 px-4">
-							<Icon v-if="item.type === 'revenue'" icon="mdi:chevron-double-up" v-show="!isDark" aria-hidden="true"
+							<Icon v-if="item.type === 'revenue'" width='35' icon="mdi:chevron-double-up" v-show="!isDark" aria-hidden="true"
 								:class="iconSizeClasses" />
-							<Icon v-else icon="mdi:chevron-double-down" v-show="!isDark" aria-hidden="true"
+							<Icon v-else width='35' icon="mdi:chevron-double-down" v-show="!isDark" aria-hidden="true"
 								:class="iconSizeClasses" />
 						</td>
 						<td class="py-2 px-4">{{ item.category.name }}</td>
