@@ -42,8 +42,14 @@ loadData();
             <td class="py-2 px-4">{{ item.name }}</td>
             <td class="py-2 px-4">{{ item.amount }}</td>
             <td class="py-2 px-4">{{ item.expiry_date }}</td>
-            <td class="py-2 px-4">{{ item.status }}</td>
-            <td class="py-2 px-4">{{ item.type }}</td>
+            <td class="py-2 px-4">
+                <Icon v-if="item.status === 'paid' " width='35' icon="mdi:check" v-show="!isDark" aria-hidden="true" :class="iconSizeClasses" />
+                <Icon v-else width='35' icon="mdi:close" v-show="!isDark" aria-hidden="true" :class="iconSizeClasses" />
+            </td>
+            <td class="py-2 px-4">
+                <Icon v-if="item.type === 'pay' " width='35' icon="mdi:bank-transfer-out" v-show="!isDark" aria-hidden="true" :class="iconSizeClasses" />
+                <Icon v-else width='35' icon="mdi:bank-transfer-in" v-show="!isDark" aria-hidden="true" :class="iconSizeClasses" />
+            </td>
             <td>
               <Button iconOnly variant="secondary" @click="toggleDarkMode()" v-slot="{ iconSizeClasses }"
                 class="hidden md:inline-flex mx-1" srText="Toggle dark mode">
