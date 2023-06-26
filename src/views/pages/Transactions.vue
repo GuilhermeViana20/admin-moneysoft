@@ -5,11 +5,14 @@ import Button from '@/components/Button.vue'
 import { Icon } from '@iconify/vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import api from '@/api';
+import Badge from "@/components/Badge.vue";
 
 const showTable = ref(false)
 const open = ref(false)
 const items = ref(null)
 const selectedTransaction = ref(null)
+const expense = ref(null)
+const revenue = ref(null)
 
 const deleteTransaction = (item) => {
 	open.value = true;
@@ -20,6 +23,8 @@ const loadData = async () => {
   try {
     const response = await api.get('/transactions');
     items.value = response.data.transactions;
+    expense.value = response.data.values.expense;
+    revenue.value = response.data.values.revenue;
 	showTable.value = true
   } catch (error) {
     console.error(error);
@@ -34,6 +39,11 @@ loadData();
 <template>
 	<PageWrapper title="Transações" url="/pages/add/transaction">
 		<div class="overflow-x-auto">
+
+            <div class='py-4'>
+                <span>Receita: <Badge :title="revenue" badge="green" /></span>
+                <span class='px-3'>Despesa: <Badge :title="expense" badge="red" /></span>
+            </div>
 
 			<div v-show='!showTable' class="text-center">
 				<div role="status">
