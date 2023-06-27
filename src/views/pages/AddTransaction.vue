@@ -116,7 +116,7 @@ loadCategories();
                     <div class="space-y-2">
                         <Label for="card" value="Cartão" />
 
-                        <InputIconWrapper icon="mdi:email-outline">
+                        <InputIconWrapper icon="mdi:credit-card-outline">
                             <Select
                                 withIcon
                                 id='card'
@@ -149,7 +149,7 @@ loadCategories();
                     <div class="space-y-2">
                         <Label for="description" value="Descrição" />
 
-                        <InputIconWrapper icon="mdi:email-outline">
+                        <InputIconWrapper icon="mdi:text-box-edit-outline">
                             <Input
                                 withIcon
                                 id='description'
@@ -164,7 +164,7 @@ loadCategories();
                     <div class="space-y-2">
                         <Label for="amount" value="Valor" />
 
-                        <InputIconWrapper icon="mdi:email-outline">
+                        <InputIconWrapper icon="mdi:cash-multiple">
                             <Input
                                 withIcon
                                 id='amount'
@@ -180,7 +180,7 @@ loadCategories();
                     <div class="space-y-2">
                         <Label for="type" value="Tipo" />
 
-                        <InputIconWrapper icon="mdi:email-outline">
+                        <InputIconWrapper icon="mdi:briefcase-arrow-left-right-outline">
                             <Select
                                 withIcon
                                 id='type'
@@ -197,7 +197,7 @@ loadCategories();
                     <div class="space-y-2">
                         <Label for="category_id" value="Categoria" />
 
-                        <InputIconWrapper icon="mdi:email-outline">
+                        <InputIconWrapper icon="mdi:folder-multiple-outline">
                             <Select
                                 withIcon
                                 id='card'
@@ -217,7 +217,7 @@ loadCategories();
                         type="submit"
                         class="justify-center w-full gap-2"
                         :disabled="form.processing"
-                        left-icon="mdi:login"
+                        left-icon="mdi:content-save-check-outline"
                     >
                         <span>Salvar Transação</span>
                     </Button>
