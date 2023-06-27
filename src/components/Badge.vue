@@ -20,7 +20,21 @@ export default {
     },
     computed: {
         badgeClasses() {
-            return `bg-${this.badge}-100 text-${this.badge}-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-${this.badge}-900 dark:text-${this.badge}-300`;
+            return `
+                inline-flex
+                items-center
+                rounded-md
+                bg-${this.badge}-100
+                text-${this.badge}-600
+                text-xs
+                font-medium
+                px-2.5
+                py-0.5
+                rounded
+                dark:bg-${this.badge}-900
+                dark:text-${this.badge}-300
+                font-semibold
+            `;
         },
     },
 };
