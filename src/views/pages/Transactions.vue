@@ -1,10 +1,11 @@
 <script setup>
+import api from '@/api';
 import { ref } from 'vue';
-import PageWrapper from '@/components/PageWrapper.vue';
-import Button from '@/components/Button.vue'
 import { Icon } from '@iconify/vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import api from '@/api';
+import PageWrapper from '@/components/PageWrapper.vue';
+import Pagination from "@/components/Pagination.vue";
+import Button from '@/components/Button.vue'
 import Badge from "@/components/Badge.vue";
 
 const showTable = ref(false)
@@ -13,18 +14,22 @@ const items = ref(null)
 const selectedTransaction = ref(null)
 const expense = ref(null)
 const revenue = ref(null)
+const pagination = ref(null)
 
 const deleteTransaction = (item) => {
 	open.value = true;
 	selectedTransaction.value = item;
 }
 
-const loadData = async () => {
+const loadData = async (page) => {
   try {
-    const response = await api.get('/transactions');
+    const response = await api.get('/transactions?page=' + page);
+
     items.value = response.data.transactions;
     expense.value = response.data.values.expense;
     revenue.value = response.data.values.revenue;
+    pagination.value = response.data.pagination;
+
 	showTable.value = true
   } catch (error) {
     console.error(error);
@@ -73,32 +78,29 @@ loadData();
 						<td class="py-2 px-4">{{ item.amount }}</td>
 						<td class="py-2 px-4">{{ item.executed_at }}</td>
 						<td class="py-2 px-4">
-							<Icon v-if="item.type === 'revenue'" width='35' icon="mdi:chevron-double-up" v-show="!isDark" aria-hidden="true"
-								:class="iconSizeClasses" />
-							<Icon v-else width='35' icon="mdi:chevron-double-down" v-show="!isDark" aria-hidden="true"
-								:class="iconSizeClasses" />
+							<Icon v-if="item.type === 'revenue'" width='35' icon="mdi:chevron-double-up" aria-hidden="true" :class="iconSizeClasses" />
+							<Icon v-else width='30' icon="mdi:chevron-double-down" aria-hidden="true" :class="iconSizeClasses" />
 						</td>
 						<td class="py-2 px-4">{{ item.category.name }}</td>
 						<td class="py-2 px-4">{{ item.card.description }}</td>
 						<td>
 							<Button iconOnly variant="secondary" @click="toggleDarkMode()" v-slot="{ iconSizeClasses }"
 								class="hidden md:inline-flex mx-1" srText="Toggle dark mode">
-								<Icon icon="mdi:pencil" v-show="!isDark" aria-hidden="true" :class="iconSizeClasses" />
-								<Icon icon="mdi:white-pencil" v-show="isDark" aria-hidden="true" :class="iconSizeClasses" />
+								<Icon icon="mdi:pencil" aria-hidden="true" :class="iconSizeClasses" />
 							</Button>
 
 							<Button iconOnly variant="secondary" @click="deleteTransaction(item)" v-slot="{ iconSizeClasses }"
 								class="hidden md:inline-flex mx-1" srText="Toggle dark mode">
-								<Icon icon="mdi:trash-can-outline" v-show="!isDark" aria-hidden="true"
-									:class="iconSizeClasses" />
-								<Icon icon="mdi:white-trash-can-outline" v-show="isDark" aria-hidden="true"
-									:class="iconSizeClasses" />
+								<Icon icon="mdi:trash-can-outline" aria-hidden="true" :class="iconSizeClasses" />
 							</Button>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-		</div>
+
+            <Pagination :pagination="pagination" @page-change="loadData" />
+
+        </div>
 
 		<TransitionRoot as="template" :show="open">
 			<Dialog as="div" class="relative z-10" @close="open = false">
@@ -155,6 +157,8 @@ loadData();
 	</PageWrapper>
 </template>
 
-<style scoped>td {
+<style scoped>
+td {
 	padding: 10px 0px;
-}</style>
+}
+</style>
