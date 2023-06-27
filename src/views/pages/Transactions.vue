@@ -1,12 +1,15 @@
 <script setup>
 import api from '@/api';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue'
 import { Icon } from '@iconify/vue'
+import { useRouter } from 'vue-router';
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import PageWrapper from '@/components/PageWrapper.vue';
 import Pagination from "@/components/Pagination.vue";
 import Button from '@/components/Button.vue'
 import Badge from "@/components/Badge.vue";
+
+const router = useRouter();
 
 const showTable = ref(false)
 const open = ref(false)
@@ -19,6 +22,10 @@ const pagination = ref(null)
 const deleteTransaction = (item) => {
 	open.value = true;
 	selectedTransaction.value = item;
+}
+
+const edit = (item) => {
+  router.push('/pages/edit/transaction/' + item.id)
 }
 
 const loadData = async (page) => {
@@ -37,7 +44,9 @@ const loadData = async (page) => {
   }
 }
 
-loadData();
+onMounted(() => {
+  loadData();
+});
 
 </script>
 
@@ -84,7 +93,7 @@ loadData();
 						<td class="py-2 px-4">{{ item.category.name }}</td>
 						<td class="py-2 px-4">{{ item.card.description }}</td>
 						<td>
-							<Button iconOnly variant="secondary" @click="toggleDarkMode()" v-slot="{ iconSizeClasses }"
+							<Button iconOnly variant="secondary" @click="edit(item)" v-slot="{ iconSizeClasses }"
 								class="hidden md:inline-flex mx-1" srText="Toggle dark mode">
 								<Icon icon="mdi:pencil" aria-hidden="true" :class="iconSizeClasses" />
 							</Button>
@@ -98,9 +107,8 @@ loadData();
 				</tbody>
 			</table>
 
-            <Pagination :pagination="pagination" @page-change="loadData" />
-
-        </div>
+      <Pagination :pagination="pagination" @page-change="loadData" />
+    </div>
 
 		<TransitionRoot as="template" :show="open">
 			<Dialog as="div" class="relative z-10" @close="open = false">

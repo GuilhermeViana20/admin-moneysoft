@@ -24,7 +24,7 @@ export default [
         component: () => import('@/views/pages/AddTransaction.vue'),
       },
       {
-        path: '/pages/edit/transaction',
+        path: '/pages/edit/transaction/:id',
         name: 'EditTransaction',
         component: () => import('@/views/pages/EditTransaction.vue'),
       },
