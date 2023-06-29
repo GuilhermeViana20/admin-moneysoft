@@ -13,6 +13,7 @@ import { reactive, ref } from 'vue'
 import { useToast } from 'vue-toastification';
 import 'vue-toastification/dist/index.css';
 import Label from '@/components/Label.vue'
+import { useRouter } from 'vue-router'
 
 const toast = useToast();
 
@@ -28,6 +29,8 @@ const executed_at = ref(null)
 const description = ref(null)
 const value = ref(0)
 const user_id = ref(1)
+
+const router = useRouter();
 
 const types = [
     { label: 'Despesa', value: 'expense' },
@@ -85,18 +88,26 @@ const loadCategories = async () => {
 const save = async () => {
     try {
         form.processing = true
-
         const response = await api.post('/transactions', form);
-
         toast.success(response.data, { timeout: 3000 });
-
+        clean()
+        router.push('/pages/transactions')
         form.processing = false
-
     } catch (error) {
         toast.error(error.message, { timeout: 3000 });
-
         form.processing = false
     }
+}
+
+const clean = () => {
+    form.card_id = '';
+    form.executed_at = '';
+    form.description = '';
+    form.amount = '';
+    form.type = 'expense';
+    form.category_id = '';
+    form.remember = false;
+    form.user_id = 1;
 }
 
 loadCards();
