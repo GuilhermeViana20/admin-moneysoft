@@ -18,10 +18,37 @@ const selectedTransaction = ref(null)
 const expense = ref(null)
 const revenue = ref(null)
 const pagination = ref(null)
+import { useToast } from 'vue-toastification';
+import 'vue-toastification/dist/index.css';
 
-const deleteTransaction = (item) => {
-	open.value = true;
-	selectedTransaction.value = item;
+const toast = useToast();
+
+const setTransaction = async (item) => {
+  open.value = true;
+  selectedTransaction.value = item;
+}
+
+const deleteTransaction = async () => {
+  try {
+    const response = await api.delete('/transactions/' + selectedTransaction.value.id);
+    toast.success(response.data, { timeout: 3000 });
+    loadData();
+  } catch (error) {
+    toast.error(error.message, { timeout: 3000 });
+    console.error(error);
+  }
+}
+
+const update = async () => {
+  try {
+
+    toast.success(response.data, { timeout: 3000 });
+    form.processing = false
+  } catch (error) {
+    toast.error(error.message, { timeout: 3000 });
+    form.processing = false
+    console.error(error);
+  }
 }
 
 const edit = (item) => {
@@ -98,7 +125,7 @@ onMounted(() => {
 								<Icon icon="mdi:pencil" aria-hidden="true" :class="iconSizeClasses" />
 							</Button>
 
-							<Button iconOnly variant="secondary" @click="deleteTransaction(item)" v-slot="{ iconSizeClasses }"
+							<Button iconOnly variant="secondary" @click="setTransaction(item)" v-slot="{ iconSizeClasses }"
 								class="hidden md:inline-flex mx-1" srText="Toggle dark mode">
 								<Icon icon="mdi:trash-can-outline" aria-hidden="true" :class="iconSizeClasses" />
 							</Button>
@@ -151,7 +178,7 @@ onMounted(() => {
 								<div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
 									<button type="button"
 										class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-										@click="open = false">Remover</button>
+										@click="deleteTransaction(), open = false">Remover</button>
 									<button type="button"
 										class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
 										@click="open = false" ref="cancelButtonRef">Cancelar</button>
