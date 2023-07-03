@@ -16,6 +16,14 @@ const props = defineProps({
             return ['success', 'warning', 'danger'].includes(value)
         },
     },
+    statusIcon: {
+        type: String,
+        default: 'mdi:trending-neutral',
+    },
+    statusIconClasses: {
+        type: String,
+        default: 'w-4 h-4 text-yellow-500 dark:text-yellow-200',
+    },
     percentage: {
         type: [String, Number],
     },
