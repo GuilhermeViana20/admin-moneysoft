@@ -3,6 +3,7 @@ import PageWrapper from '@/components/PageWrapper.vue'
 import StatisticsSection from '@/components/pages/dashboard/StatisticsSection.vue'
 import SalesSection from '@/components/pages/dashboard/SalesSection.vue'
 import LatestSection from '@/components/pages/dashboard/LatestSection.vue'
+
 </script>
 
 <template>
@@ -14,7 +15,7 @@ import LatestSection from '@/components/pages/dashboard/LatestSection.vue'
         </template>
 
         <!-- Statistics section -->
-        <StatisticsSection />
+        <StatisticsSection :transactions='transactions' />
 
         <!-- Sales section -->
         <SalesSection />

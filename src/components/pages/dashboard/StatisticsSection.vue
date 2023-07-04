@@ -1,10 +1,35 @@
 <script setup>
 import QuiclStatisticsCard from '@/components/QuiclStatisticsCard.vue'
+import { onMounted, ref } from 'vue'
+import api from '@/api'
+import { formToJSON } from 'axios'
 
 const transactionsData = [4, 3, 10, 9, 29, 19, 22, 9, 12, 7, 19, 5, 13]
 const paymentsData = [4, 3, 10, 9, 29, 19, 22, 9, 12, 7, 19, 5, 13].reverse()
 const categoriesData = [4, 3, 10, 9, 29, 19, 22, 9, 12, 7, 19, 5, 13]
 const brandsData = [4, 3, 10, 9, 29, 19, 22, 9, 12, 7, 19, 5, 13]
+
+const transactions = ref(null)
+const payments = ref(null)
+const brands = ref(null)
+const categories = ref(null)
+
+const loadData = async () => {
+    try {
+        const response = await api.get('/dashboard/values');
+        transactions.value = response.data.transactions;
+        payments.value = response.data.payments;
+        brands.value = response.data.brands;
+        categories.value = response.data.categories;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+onMounted(() => {
+    loadData();
+});
+
 </script>
 
 <template>
@@ -13,44 +38,46 @@ const brandsData = [4, 3, 10, 9, 29, 19, 22, 9, 12, 7, 19, 5, 13]
 
         <!-- Transactions card -->
         <QuiclStatisticsCard
-            title="Transações"
+            :title="transactions && transactions.title"
             :chartData="transactionsData"
-            result="12.4k"
-            percentage="32.40%"
-            :actions="[{ title: 'View', to: '#' }]"
+            :result="transactions && transactions.subtitle"
+            :percentage="transactions && transactions.percentage"
+            :actions="[{ title: 'Visualizar', to: '#' }]"
             icon="mdi:account-group-outline"
+            :status="transactions && transactions.status"
         />
 
         <!-- Payments card -->
         <QuiclStatisticsCard
-            title="Pagamentos"
+            :title="payments && payments.title"
             :chartData="paymentsData"
-            result="-2.6k"
-            status="danger"
-            percentage="-2.10%"
-            :actions="[{ title: 'View', to: '#' }]"
+            :result="payments && payments.subtitle"
+            :percentage="payments && payments.percentage"
+            :actions="[{ title: 'Visualizar', to: '#' }]"
             icon="mdi:eye-outline"
+            :status="payments && payments.status"
         />
 
         <!-- Categories card -->
         <QuiclStatisticsCard
-            title="Categorias"
+            :title="categories && categories.title"
             :chartData="categoriesData"
-            result="34.4k"
-            status="warning"
-            percentage="0.60%"
-            :actions="[{ title: 'View', to: '#' }]"
+            :result="categories && categories.subtitle"
+            :percentage="categories && categories.percentage"
+            :actions="[{ title: 'Visualizar', to: '#' }]"
             icon="mdi:cart-outline"
+            :status="categories && categories.status"
         />
 
         <!-- Brands card -->
         <QuiclStatisticsCard
-            title="Bandeiras"
+            :title="brands && brands.title"
             :chartData="brandsData"
-            result="15.6%"
-            percentage="7.20%"
+            :result="brands && brands.subtitle"
+            :percentage="brands && brands.percentage"
             :actions="[{ title: 'View', to: '#' }]"
             icon="mdi:chart-pie"
+            :status="brands && brands.status"
         />
     </section>
 </template>
