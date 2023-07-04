@@ -45,8 +45,6 @@ onMounted(() => {
             :actions="[{ title: 'Visualizar', to: '#' }]"
             icon="mdi:account-group-outline"
             :status="transactions && transactions.status"
-            :statusIcon="transactions && transactions.status_icon"
-            :statusIconClasses="transactions && transactions.status_icon_classes"
         />
 
         <!-- Payments card -->
@@ -58,8 +56,6 @@ onMounted(() => {
             :actions="[{ title: 'Visualizar', to: '#' }]"
             icon="mdi:eye-outline"
             :status="payments && payments.status"
-            :statusIcon="payments && payments.status_icon"
-            :statusIconClasses="payments && payments.status_icon_classes"
         />
 
         <!-- Categories card -->
@@ -71,8 +67,6 @@ onMounted(() => {
             :actions="[{ title: 'Visualizar', to: '#' }]"
             icon="mdi:cart-outline"
             :status="categories && categories.status"
-            :statusIcon="categories && categories.status_icon"
-            :statusIconClasses="categories && categories.status_icon_classes"
         />
 
         <!-- Brands card -->
@@ -84,8 +78,6 @@ onMounted(() => {
             :actions="[{ title: 'View', to: '#' }]"
             icon="mdi:chart-pie"
             :status="brands && brands.status"
-            :statusIcon="brands && brands.status_icon"
-            :statusIconClasses="brands && brands.status_icon_classes"
         />
     </section>
 </template>

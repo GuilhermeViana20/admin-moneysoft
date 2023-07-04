@@ -31,35 +31,35 @@ const isCurrentPath = (path) => {
             title="Transações"
             :to="{ name: 'Transactions' }"
             :active="isCurrentRoute('Transactions')"
-            icon="mdi:swap-horizontal"
+            icon="mdi:briefcase-arrow-up-down"
         />
 
         <SidebarLink
             title="Pagamentos"
             :to="{ name: 'Payments' }"
             :active="isCurrentRoute('Payments')"
-            icon="mdi:swap-horizontal"
+            icon="mdi:file-arrow-up-down"
         />
 
         <SidebarLink
             title="Cartões"
             :to="{ name: 'Cards' }"
             :active="isCurrentRoute('Cards')"
-            icon="mdi:swap-horizontal"
+            icon="mdi:credit-card-multiple"
         />
 
         <SidebarLink
             title="Bandeiras"
             :to="{ name: 'Brands' }"
             :active="isCurrentRoute('Brands')"
-            icon="mdi:swap-horizontal"
+            icon="mdi:flag"
         />
 
         <SidebarLink
             title="Categorias"
             :to="{ name: 'Categories' }"
             :active="isCurrentRoute('Categories')"
-            icon="mdi:swap-horizontal"
+            icon="mdi:folder-multiple"
         />
 
         <!-- <SidebarCollapsible

@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import BaseCard from '@/components/BaseCard.vue'
 import ApexCharts from 'apexcharts'
 import { Icon } from '@iconify/vue'
@@ -15,14 +15,6 @@ const props = defineProps({
         validator(value) {
             return ['success', 'warning', 'danger'].includes(value)
         },
-    },
-    statusIcon: {
-        type: String,
-        default: 'mdi:trending-neutral',
-    },
-    statusIconClasses: {
-        type: String,
-        default: 'w-4 h-4 text-yellow-500 dark:text-yellow-200',
     },
     percentage: {
         type: [String, Number],
@@ -44,28 +36,6 @@ const props = defineProps({
     },
 })
 
-let statusIcon
-let statusIconClasses
-
-switch (props.status) {
-    case 'success':
-        statusIcon = 'mdi:trending-up'
-        statusIconClasses = 'w-4 h-4 text-green-500 dark:text-green-200'
-        break
-    case 'warning':
-        statusIcon = 'mdi:trending-neutral'
-        statusIconClasses = 'w-4 h-4 text-yellow-500 dark:text-yellow-200'
-        break
-    case 'danger':
-        statusIcon = 'mdi:trending-down'
-        statusIconClasses = 'w-4 h-4 text-red-500 dark:text-red-200'
-        break
-
-    default:
-        statusIcon = 'mdi:trending-up'
-        statusIconClasses = 'w-4 h-4 text-green-500 dark:text-green-200'
-        break
-}
 onMounted(() => {
     let chart = new ApexCharts(chartEl.value, {
         series: [
@@ -164,6 +134,32 @@ onMounted(() => {
 
     chart.render()
 })
+
+const computedStatusIcon = computed(() => {
+    switch (props.status) {
+        case 'success':
+            return 'mdi:trending-up'
+        case 'warning':
+            return 'mdi:trending-neutral'
+        case 'danger':
+            return 'mdi:trending-down'
+        default:
+            return 'mdi:trending-up'
+    }
+})
+
+const computedStatusIconClasses = computed(() => {
+    switch (props.status) {
+        case 'success':
+            return 'w-4 h-4 text-green-500 dark:text-green-200'
+        case 'warning':
+            return 'w-4 h-4 text-yellow-500 dark:text-yellow-200'
+        case 'danger':
+            return 'w-4 h-4 text-red-500 dark:text-red-200'
+        default:
+            return 'w-4 h-4 text-green-500 dark:text-green-200'
+    }
+})
 </script>
 
 <template>
@@ -191,8 +187,8 @@ onMounted(() => {
                         ]"
                     >
                         <Icon
-                            :icon="statusIcon"
-                            :class="statusIconClasses"
+                            :icon="computedStatusIcon"
+                            :class="computedStatusIconClasses"
                             aria-hidden="true"
                         />
                     </span>
@@ -206,7 +202,7 @@ onMounted(() => {
                                 'text-red-500': status == 'danger',
                             },
                         ]"
-                        >{{ percentage }}</span
+                    >{{ percentage }}</span
                     >
                 </div>
             </div>

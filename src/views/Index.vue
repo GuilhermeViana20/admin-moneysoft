@@ -3,8 +3,6 @@ import PageWrapper from '@/components/PageWrapper.vue'
 import StatisticsSection from '@/components/pages/dashboard/StatisticsSection.vue'
 import SalesSection from '@/components/pages/dashboard/SalesSection.vue'
 import LatestSection from '@/components/pages/dashboard/LatestSection.vue'
-import api from '@/api'
-import { onMounted, ref } from 'vue'
 
 </script>
 
